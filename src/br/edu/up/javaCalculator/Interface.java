@@ -15,13 +15,13 @@ public class Interface extends ComplexOperations {
 			if (option == 9)
 				return;
 			else if (option == 1)
-				addiction();
+				Saddiction();
 			else if (option == 2)
-				subtraction();
+				Ssubtraction();
 			else if (option == 3)
-				multiplication();
+				Smultiplication();
 			else if (option == 4)
-				division();
+				Sdivision();
 			else if (option == 5)
 				average();
 			else
@@ -33,34 +33,36 @@ public class Interface extends ComplexOperations {
 		String value = scanner.nextLine();
 		return value;
 	}
+	private double lastValuev=0;
 
-	private void addiction() {
+	private void Saddiction() {
 		System.out.println("---------------Addiction---------------");
-
-		System.out.print("Result: ");
-		System.out.println(super.addition(1, 2));
+		lastValuev = super.addition(lastValuev);
+		System.out.println("Result: " + lastValuev);
+		
+		
 	}
 
-	private void subtraction() {
+	private void Ssubtraction() {
 		System.out.println("---------------Subtraction---------------");
-
-		System.out.print("Result: ");
-		System.out.println(super.subtraction(1, 2));
+		lastValuev = super.subtraction(lastValuev);
+		System.out.println("Result: " + lastValuev);
 	}
 
-	private void multiplication() {
+	private void Smultiplication() {
 		System.out.println("---------------Multiplication---------------");
-
-		System.out.print("Result: ");
-		System.out.println(super.multiplication(1, 2));
+		lastValuev = super.multiplication(lastValuev);
+		System.out.println("Result: " + lastValuev);
+		
 	}
 
-	private void division() {
+	private void Sdivision() {
 		System.out.println("---------------Division---------------");
-
-		System.out.print("Result: ");
-		System.out.println(super.division(1, 2));
+		lastValuev = super.division(lastValuev);
+		System.out.println("Result: " + lastValuev);
+		
 	}
+		
 
 	private void average() {
 		double myGrades[] = {};
