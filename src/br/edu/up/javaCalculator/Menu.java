@@ -1,6 +1,7 @@
 package br.edu.up.javaCalculator;
 
 public class Menu {
+
 	public void show() {
 		System.out.println("---------------Menu---------------");
 		System.out.println("1. Adição");
@@ -9,6 +10,7 @@ public class Menu {
 		System.out.println("4. Divisão");
 		System.out.println("5. Média de notas");
 		System.out.println("9. Sair");
-		System.out.println("Digite o número da opção deseja para prosseguir: ");
+		System.out.print("Digite o número da opção deseja para prosseguir: ");
 	}
+
 }
