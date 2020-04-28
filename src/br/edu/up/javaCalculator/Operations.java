@@ -1,85 +1,24 @@
 package br.edu.up.javaCalculator;
 
-import java.util.Scanner;
-
-
-
 public class Operations {
-	public Scanner scanner = new Scanner(System.in);
-	double addition(double lastValue) {
-		System.out.println("Would you like to use your last result? (y/n)");
-		String desire = scanner.nextLine();
-		if (desire.equals("Y")|| desire.equals("y")) {
-			System.out.println("Insert your nest value: ");
-			Double FirstValue = scanner.nextDouble();
-			FirstValue = FirstValue + lastValue;
-			return FirstValue;
-		}
-		else {
-			System.out.println("Insert your first value: ");
-			Double FirstValue = scanner.nextDouble();
-			System.out.println("Insert your second value: ");
-			Double SecondValue = scanner.nextDouble();
-			FirstValue = FirstValue + SecondValue;
-			return FirstValue;
-		}
+
+	public double firstValue = 0;
+	public double secondValue = 0;
+	public double ans = 0;
+
+	public void addition() {
+		ans = firstValue + secondValue;
 	}
 
-	double subtraction(double lastValue) {
-		System.out.println("Would you like to use your last result? (y/n)");
-		String desire = scanner.nextLine();		
-		if (desire.equals("Y")|| desire.equals("y")) {
-			System.out.println("Insert your nest value: ");
-			Double FirstValue = scanner.nextDouble();
-			FirstValue = FirstValue - lastValue;
-			return FirstValue;
-		}
-		else {
-			System.out.println("Insert your first value: ");
-			Double FirstValue = scanner.nextDouble();
-			System.out.println("Insert your second value: ");
-			Double SecondValue = scanner.nextDouble();
-			FirstValue = FirstValue - SecondValue;
-			return FirstValue;
-		}
-
+	public void subtraction() {
+		ans = firstValue - secondValue;
 	}
 
-	double multiplication(double lastValue) {
-		System.out.println("Would you like to use your last result? (y/n)");
-		String desire = scanner.nextLine();
-		if (desire.equals("Y")|| desire.equals("y")) {
-			System.out.println("Insert your nest value: ");
-			Double FirstValue = scanner.nextDouble();
-			FirstValue = FirstValue*lastValue;
-			return FirstValue;
-		}
-		else {
-			System.out.println("Insert your first value: ");
-			Double FirstValue = scanner.nextDouble();
-			System.out.println("Insert your second value: ");
-			Double SecondValue = scanner.nextDouble();
-			FirstValue = FirstValue*SecondValue;
-			return FirstValue;
-		}
+	public void multiplication() {
+		ans = firstValue * secondValue;
 	}
 
-	double division(double lastValue) {
-		System.out.println("Would you like to use your last result? (y/n)");
-		String desire = scanner.nextLine();
-		if (desire.equals("Y")|| desire.equals("y")) {
-			System.out.println("Insert your nest value: ");
-			Double FirstValue = scanner.nextDouble();
-			FirstValue = FirstValue / lastValue;
-			return FirstValue;
-		}
-		else {
-			System.out.println("Insert your first value: ");
-			Double FirstValue = scanner.nextDouble();
-			System.out.println("Insert your second value: ");
-			Double SecondValue = scanner.nextDouble();
-			FirstValue = FirstValue / SecondValue;
-			return FirstValue;
-		}
+	public void division() {
+		ans = firstValue / secondValue;
 	}
 }
