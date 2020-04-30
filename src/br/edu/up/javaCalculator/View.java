@@ -12,9 +12,11 @@ public class View extends ComplexOperations {
 		while (true) {
 			menu.show();
 			option = readOption();
-			if (option.equals("9"))
+			if (option.equals("9")) {
+				System.out.println();
+				System.out.println("Bye! See you later!");
 				return;
-			else if (option.equals("1"))
+			} else if (option.equals("1"))
 				addition();
 			else if (option.equals("2"))
 				subtraction();
