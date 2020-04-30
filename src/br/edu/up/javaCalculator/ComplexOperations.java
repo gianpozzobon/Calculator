@@ -25,6 +25,8 @@ public class ComplexOperations extends Operations {
 		firstValue = valuesSum;
 		secondValue = pointsSum;
 		super.division();
+		values.clear();
+		points.clear();
 		return;
 	}
 
