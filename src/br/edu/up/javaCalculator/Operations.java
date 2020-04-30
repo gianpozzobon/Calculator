@@ -2,9 +2,9 @@ package br.edu.up.javaCalculator;
 
 public class Operations {
 
-	public double firstValue = 0;
-	public double secondValue = 0;
-	public double ans = 0;
+	public float firstValue = 0;
+	public float secondValue = 0;
+	public float ans = 0;
 
 	public void addition() {
 		ans = firstValue + secondValue;

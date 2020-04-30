@@ -1,35 +1,33 @@
 package br.edu.up.javaCalculator;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class ComplexOperations extends Operations {
-	
-	public Scanner scanner = new Scanner(System.in);
+
+	public ArrayList<Float> values = new ArrayList<Float>();
+	public ArrayList<Float> points = new ArrayList<Float>();
+
+//	public Scanner scanner = new Scanner(System.in);
 
 	public void average() {
-		double result = 0, checkError;
-		int loopsCount = 1;
-		double coefficientCount = 0;
-		while (coefficientCount < 1 ) {
-			System.out.print("Insert note " + loopsCount + ": ");
-			Double gradeInput = Double.parseDouble(scanner.nextLine());
-			System.out.print("Insert coefficient " + loopsCount + ": ");
-			Double coefficientInput = Double.parseDouble(scanner.nextLine());
-			loopsCount++;
-			coefficientCount = coefficientInput + coefficientCount;
-			System.out.println(coefficientCount);
-			checkError = 1 - coefficientCount;
-			if(checkError <= 0.01) {
-				coefficientCount= coefficientCount + 0.1;
-			}
-			result = gradeInput * coefficientInput + result;
+		float valuesSum = 0, pointsSum = 0;
+		for (int i = 0; i < values.size(); i++) {
+			firstValue = values.get(i);
+			secondValue = points.get(i);
+			super.multiplication();
+			firstValue = valuesSum;
+			secondValue = ans;
+			super.addition();
+			valuesSum = ans;
+			firstValue = pointsSum;
+			secondValue = points.get(i);
+			super.addition();
+			pointsSum = ans;
 		}
-		System.out.println("");
-		System.out.println("Result: " + result);
-		System.out.println("");
-		System.out.println("");
-		System.out.println("Press enter to continue... ");
-		scanner.nextLine();
+		firstValue = valuesSum;
+		secondValue = pointsSum;
+		super.division();
+		return;
 	}
 
 }
