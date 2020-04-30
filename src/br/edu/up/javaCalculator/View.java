@@ -57,7 +57,7 @@ public class View extends ComplexOperations {
 		String useLastResult = readOption();
 		if (useLastResult.equals("Y") || useLastResult.equals("y") || useLastResult.equals("")) {
 			firstValue = ans;
-			System.out.print("Insert your nest value: ");
+			System.out.print("Insert your next value: ");
 			secondValue = readNumber();
 		} else if (useLastResult.equals("N") || useLastResult.equals("n")) {
 			System.out.print("Insert your first value: ");
@@ -95,36 +95,9 @@ public class View extends ComplexOperations {
 		showResult();
 	}
 
-	public void average() {
-		double myGrades[] = {};
-		double myCoefficients[] = {};
-		System.out.println("---------------Average---------------\n");
-		int loopsCount = 1;
-		String exitAverage = "";
-		while (true) {
-			System.out.print("Insert note " + loopsCount + ": ");
-			String gradeInput = readOption();
-			System.out.print("Insert coefficient " + loopsCount + ": ");
-			String coefficientInput = readOption();
-			double grade = gradeInput != "" ? Double.parseDouble(gradeInput) : 0;
-			double coefficient = coefficientInput != "" ? Double.parseDouble(coefficientInput) : 0;
-			while (true) {
-				System.out.print("Do you want to insert another note? (Y / n)");
-				exitAverage = readOption();
-				if (exitAverage.equals("Y") || exitAverage.equals("y") || exitAverage.equals("")
-						|| exitAverage.equals("N") || exitAverage.equals("n"))
-					break;
-				else {
-					System.out.println(exitAverage);
-					invalidOption();
-				}
-			}
-			if (exitAverage.equals("N") || exitAverage.equals("n"))
-				break;
-			loopsCount++;
+	public void aaverage() {
+		System.out.println("---------------Average---------------");
+		super.average();
 		}
-		System.out.print("Result: ");
-		System.out.println(super.average(myGrades, myCoefficients));
-	}
 
 }
