@@ -12,9 +12,11 @@ public class View extends ComplexOperations {
 		while (true) {
 			menu.show();
 			option = readOption();
-			if (option.equals("9"))
+			if (option.equals("9")) {
+				System.out.println();
+				System.out.println("Bye! See you later!");
 				return;
-			else if (option.equals("1"))
+			} else if (option.equals("1"))
 				addition();
 			else if (option.equals("2"))
 				subtraction();
@@ -34,97 +36,145 @@ public class View extends ComplexOperations {
 		return value;
 	}
 
-	public double readNumber() {
-		double value = Double.parseDouble(scanner.nextLine());
+	public float readNumber() {
+		float value = Float.parseFloat(scanner.nextLine());
 		return value;
 	}
 
+	public boolean getConfirmation(String message) {
+		while (true) {
+			System.out.println();
+			System.out.print(message + " (Y/n)");
+			String useLastResult = readOption().toLowerCase();
+			System.out.println();
+			if (useLastResult.equals("y") || useLastResult.equals(""))
+				return true;
+			else if (useLastResult.equals("n"))
+				return false;
+			invalidOption();
+		}
+	}
+
 	public void invalidOption() {
-		System.out.println("Option invalid");
+		System.out.println();
+		System.out.println("This value is invalid!Try again!");
+		System.out.println();
 	}
 
 	public void showResult() {
-		System.out.println("");
+		System.out.println();
 		System.out.println("Result: " + ans);
-		System.out.println("");
-		System.out.println("");
+		System.out.println();
+		System.out.println();
 		System.out.println("Press enter to continue... ");
 		readOption();
 	}
 
-	public void operationsSetup() {
-		System.out.println("Would you like to use your last result? (Y/n)");
-		String useLastResult = readOption();
-		if (useLastResult.equals("Y") || useLastResult.equals("y") || useLastResult.equals("")) {
-			firstValue = ans;
-			System.out.print("Insert your nest value: ");
-			secondValue = readNumber();
-		} else if (useLastResult.equals("N") || useLastResult.equals("n")) {
+	public void operationsSetup(String operation) {
+		System.out.println();
+		System.out.println();
+		System.out.println("---------------" + operation + "---------------");
+		System.out.println();
+		System.out.println("You can enter numbers or 'ans' to use last result!");
+		System.out.println();
+		while (true) {
 			System.out.print("Insert your first value: ");
-			firstValue = readNumber();
+			String getFirstNumber = readOption();
+			try {
+				firstValue = getFirstNumber.toLowerCase().equals("ans") ? ans : Float.parseFloat(getFirstNumber);
+				break;
+			} catch (NumberFormatException e) {
+				invalidOption();
+			}
+		}
+		while (true) {
 			System.out.print("Insert your second value: ");
-			secondValue = readNumber();
+			String getSecondNumber = readOption();
+			try {
+				secondValue = getSecondNumber.equals("ans") ? ans : Float.parseFloat(getSecondNumber);
+				break;
+			} catch (NumberFormatException e) {
+				invalidOption();
+			}
 		}
 	}
 
 	public void addition() {
-		System.out.println("---------------addition---------------");
-		operationsSetup();
+		operationsSetup("Addition");
 		super.addition();
 		showResult();
 	}
 
 	public void subtraction() {
-		System.out.println("---------------Subtraction---------------");
-		operationsSetup();
+		operationsSetup("Subtraction");
 		super.subtraction();
 		showResult();
 	}
 
 	public void multiplication() {
-		System.out.println("---------------Multiplication---------------");
-		operationsSetup();
+		operationsSetup("Multiplication");
 		super.multiplication();
 		showResult();
 	}
 
 	public void division() {
-		System.out.println("---------------Division---------------");
-		operationsSetup();
+		operationsSetup("Division");
 		super.division();
 		showResult();
 	}
 
 	public void average() {
-		double myGrades[] = {};
-		double myCoefficients[] = {};
-		System.out.println("---------------Average---------------\n");
-		int loopsCount = 1;
-		String exitAverage = "";
+		System.out.println();
+		System.out.println();
+		System.out.println("---------------Average---------------");
+		int gradesCount = 1;
+		float pointsCount = 0;
+		float gradeInput, pointsInput;
 		while (true) {
-			System.out.print("Insert note " + loopsCount + ": ");
-			String gradeInput = readOption();
-			System.out.print("Insert coefficient " + loopsCount + ": ");
-			String coefficientInput = readOption();
-			double grade = gradeInput != "" ? Double.parseDouble(gradeInput) : 0;
-			double coefficient = coefficientInput != "" ? Double.parseDouble(coefficientInput) : 0;
 			while (true) {
-				System.out.print("Do you want to insert another note? (Y / n)");
-				exitAverage = readOption();
-				if (exitAverage.equals("Y") || exitAverage.equals("y") || exitAverage.equals("")
-						|| exitAverage.equals("N") || exitAverage.equals("n"))
+				System.out.print("Insert grade " + gradesCount + " (0 to 10): ");
+				try {
+					gradeInput = readNumber();
+					if (gradeInput < 0.0 || gradeInput > 10.0)
+						throw new NumberFormatException("This grade is out permitted range!");
 					break;
-				else {
-					System.out.println(exitAverage);
-					invalidOption();
+				} catch (NumberFormatException e) {
+					System.out.println(e);
 				}
 			}
-			if (exitAverage.equals("N") || exitAverage.equals("n"))
+			while (true) {
+				System.out.print("Insert points " + gradesCount + " (0.01 to 1.0): ");
+				try {
+					pointsInput = readNumber();
+					if (pointsInput < 0.01 || pointsInput > 1.0)
+						throw new NumberFormatException("This points is out permitted range!");
+					else if (pointsCount + pointsInput > 1.0)
+						throw new NumberFormatException(
+								"The sum of the points is: " + (pointsCount + pointsInput) + " and exceeds the limit!");
+					pointsCount += pointsInput;
+					break;
+				} catch (NumberFormatException e) {
+					System.out.println(e);
+				}
+			}
+			values.add(gradeInput);
+			points.add(pointsInput);
+			gradesCount++;
+			if (pointsCount < 1) {
+				boolean confirm = getConfirmation("Would you like to insert a new grade?");
+				if (!confirm) {
+					if (pointsCount < 1.0) {
+						float pointsRemaining = 1 - pointsCount;
+						values.add((float) 0);
+						points.add(pointsRemaining);
+					}
+					break;
+				}
+			} else
 				break;
-			loopsCount++;
 		}
-		System.out.print("Result: ");
-		System.out.println(super.average(myGrades, myCoefficients));
+		super.average();
+		showResult();
 	}
 
 }
