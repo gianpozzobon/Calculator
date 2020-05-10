@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class View extends ComplexOperations {
 
-	public Scanner scanner = new Scanner(System.in);
-	public Menu menu = new Menu();
-	public String option;
+	private Scanner scanner = new Scanner(System.in);
+	private Menu menu = new Menu();
+	private String option;
 
 	public static void main(String[] args) {
 		View view = new View();
