@@ -4,9 +4,14 @@ import java.util.Scanner;
 
 public class View extends ComplexOperations {
 
-	public Scanner scanner = new Scanner(System.in);
-	public Menu menu = new Menu();
-	public String option;
+	private Scanner scanner = new Scanner(System.in);
+	private Menu menu = new Menu();
+	private String option;
+
+	public static void main(String[] args) {
+		View view = new View();
+		view.run();
+	}
 
 	public void run() {
 		while (true) {
@@ -57,13 +62,13 @@ public class View extends ComplexOperations {
 
 	public void invalidOption() {
 		System.out.println();
-		System.out.println("This value is invalid!Try again!");
+		System.out.println("This value is invalid! Try again!");
 		System.out.println();
 	}
 
 	public void showResult() {
 		System.out.println();
-		System.out.println("Result: " + ans);
+		System.out.println("Result: " + getAns());
 		System.out.println();
 		System.out.println();
 		System.out.println("Press enter to continue... ");
@@ -81,7 +86,7 @@ public class View extends ComplexOperations {
 			System.out.print("Insert your first value: ");
 			String getFirstNumber = readOption();
 			try {
-				firstValue = getFirstNumber.toLowerCase().equals("ans") ? ans : Float.parseFloat(getFirstNumber);
+				setFirstValue(getFirstNumber.toLowerCase().equals("ans") ? getAns() : Float.parseFloat(getFirstNumber));
 				break;
 			} catch (NumberFormatException e) {
 				invalidOption();
@@ -91,7 +96,7 @@ public class View extends ComplexOperations {
 			System.out.print("Insert your second value: ");
 			String getSecondNumber = readOption();
 			try {
-				secondValue = getSecondNumber.equals("ans") ? ans : Float.parseFloat(getSecondNumber);
+				setSecondValue(getSecondNumber.equals("ans") ? getAns() : Float.parseFloat(getSecondNumber));
 				break;
 			} catch (NumberFormatException e) {
 				invalidOption();
@@ -128,9 +133,8 @@ public class View extends ComplexOperations {
 		System.out.println();
 		System.out.println("---------------Average---------------");
 		int gradesCount = 1;
-		float pointsCount = 0;
-		float gradeInput, pointsInput;
-		while (true) {
+		float gradeInput, pointsInput = (float) 0.5;
+		while (gradesCount <= 2) {
 			while (true) {
 				System.out.print("Insert grade " + gradesCount + " (0 to 10): ");
 				try {
@@ -142,36 +146,9 @@ public class View extends ComplexOperations {
 					System.out.println(e);
 				}
 			}
-			while (true) {
-				System.out.print("Insert points " + gradesCount + " (0.01 to 1.0): ");
-				try {
-					pointsInput = readNumber();
-					if (pointsInput < 0.01 || pointsInput > 1.0)
-						throw new NumberFormatException("This points is out permitted range!");
-					else if (pointsCount + pointsInput > 1.0)
-						throw new NumberFormatException(
-								"The sum of the points is: " + (pointsCount + pointsInput) + " and exceeds the limit!");
-					pointsCount += pointsInput;
-					break;
-				} catch (NumberFormatException e) {
-					System.out.println(e);
-				}
-			}
 			values.add(gradeInput);
 			points.add(pointsInput);
 			gradesCount++;
-			if (pointsCount < 1) {
-				boolean confirm = getConfirmation("Would you like to insert a new grade?");
-				if (!confirm) {
-					if (pointsCount < 1.0) {
-						float pointsRemaining = 1 - pointsCount;
-						values.add((float) 0);
-						points.add(pointsRemaining);
-					}
-					break;
-				}
-			} else
-				break;
 		}
 		super.average();
 		showResult();
