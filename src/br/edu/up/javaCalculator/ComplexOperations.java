@@ -10,20 +10,20 @@ public class ComplexOperations extends Operations {
 	public void average() {
 		float valuesSum = 0, pointsSum = 0;
 		for (int i = 0; i < values.size(); i++) {
-			firstValue = values.get(i);
-			secondValue = points.get(i);
+			setFirstValue(values.get(i));
+			setSecondValue(points.get(i));
 			super.multiplication();
-			firstValue = valuesSum;
-			secondValue = ans;
+			setFirstValue(valuesSum);
+			setSecondValue(getAns());
 			super.addition();
-			valuesSum = ans;
-			firstValue = pointsSum;
-			secondValue = points.get(i);
+			valuesSum = getAns();
+			setFirstValue(pointsSum);
+			setSecondValue(points.get(i));
 			super.addition();
-			pointsSum = ans;
+			pointsSum = getAns();
 		}
-		firstValue = valuesSum;
-		secondValue = pointsSum;
+		setFirstValue(valuesSum);
+		setSecondValue(pointsSum);
 		super.division();
 		values.clear();
 		points.clear();

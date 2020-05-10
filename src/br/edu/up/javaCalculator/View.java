@@ -8,6 +8,11 @@ public class View extends ComplexOperations {
 	public Menu menu = new Menu();
 	public String option;
 
+	public static void main(String[] args) {
+		View view = new View();
+		view.run();
+	}
+
 	public void run() {
 		while (true) {
 			menu.show();
@@ -57,13 +62,13 @@ public class View extends ComplexOperations {
 
 	public void invalidOption() {
 		System.out.println();
-		System.out.println("This value is invalid!Try again!");
+		System.out.println("This value is invalid! Try again!");
 		System.out.println();
 	}
 
 	public void showResult() {
 		System.out.println();
-		System.out.println("Result: " + ans);
+		System.out.println("Result: " + getAns());
 		System.out.println();
 		System.out.println();
 		System.out.println("Press enter to continue... ");
@@ -81,7 +86,7 @@ public class View extends ComplexOperations {
 			System.out.print("Insert your first value: ");
 			String getFirstNumber = readOption();
 			try {
-				firstValue = getFirstNumber.toLowerCase().equals("ans") ? ans : Float.parseFloat(getFirstNumber);
+				setFirstValue(getFirstNumber.toLowerCase().equals("ans") ? getAns() : Float.parseFloat(getFirstNumber));
 				break;
 			} catch (NumberFormatException e) {
 				invalidOption();
@@ -91,7 +96,7 @@ public class View extends ComplexOperations {
 			System.out.print("Insert your second value: ");
 			String getSecondNumber = readOption();
 			try {
-				secondValue = getSecondNumber.equals("ans") ? ans : Float.parseFloat(getSecondNumber);
+				setSecondValue(getSecondNumber.equals("ans") ? getAns() : Float.parseFloat(getSecondNumber));
 				break;
 			} catch (NumberFormatException e) {
 				invalidOption();
